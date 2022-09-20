@@ -7,7 +7,12 @@ const HomePage = () => {
             <form>
               <div class="form-group">
                 <label for="usernameInput"><h5>Username:</h5></label>
-                <input type="text" class="form-control" id="usernameInput" placeholder="@IG_username" input/>
+                <input type="text" class="form-control" id="usernameInput" placeholder="Ex: username_123" input/>
+              </div>
+
+              <div class="form-group">
+                <label for="usernameInput"><h5>How many posts do you want me to like?</h5></label>
+                <input type="text" class="form-control" id="usernameInput" placeholder="Ex: 10" input/>
               </div>
 
               <div class="form-check">
