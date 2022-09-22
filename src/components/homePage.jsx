@@ -3,24 +3,41 @@ import { useState } from 'react';
 
 
 const HomePage = () => {
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(' ')
     const [amountOfLikes, setAmountOfLikes] = useState(0)
-    const [follow, setFollow] = useState(false)
+    const [follow, setFollow] = useState('off')
 
     console.log(`user input: ${username}}`)
     console.log(`user input: ${amountOfLikes}}`)
     console.log(`user input: ${follow}}`)
 
+    const data = {
+      "username": username,
+      "posts": amountOfLikes,
+      "follow": follow
+    }
+
+    const getLikes = async () => {
+      try {
+        await fetch('/getlikes',
+        {
+          method: 'POST',
+          body: JSON.stringify(data)
+        })
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     return (
         <React.Fragment>
             <h1>Enter your Instagram:</h1>
             <form>
-              <div class="form-group">
-                <label for="usernameInput"><h5>Username:</h5></label>
+              <div className="form-group">
+                <label htmlFor="usernameInput"><h5>Username:</h5></label>
                 <input 
                   type="text" 
-                  class="form-control" 
+                  className="form-control" 
                   id="usernameInput" 
                   placeholder="Ex: username_123" 
                   onChange={event => {
@@ -29,10 +46,10 @@ const HomePage = () => {
                   input/>
               </div>
 
-              <div class="form-group">
-                <label for="usernameInput"><h5>How many posts do you want me to like?</h5></label>
+              <div className="form-group">
+                <label htmlFor="usernameInput"><h5>How many posts do you want me to like?</h5></label>
                 <input type="text" 
-                class="form-control" 
+                className="form-control" 
                 id="usernameInput" 
                 placeholder="Ex: 10" 
                 onChange={event => {
@@ -41,22 +58,22 @@ const HomePage = () => {
                 input/>
               </div>
 
-              <div class="form-check">
+              <div className="form-check">
                 <input type="checkbox" 
-                class="form-check-input" 
+                className="form-check-input" 
                 id="follow-user" 
                 onChange={event => {
                   setFollow(event.target.value)
                 }}
                 input/>
 
-                <label class="form-check-label" for="follow-user">follow me too!</label>
+                <label className="form-check-label" htmlFor="follow-user">follow me too!</label>
               </div>
 
-              <div class="mt-3 col-md-12">
+              <div className="mt-3 col-md-12">
                 <button 
-                  class="w-100 btn btn-lg btn-primary mr-1"
-                  /*onClick={}*/
+                  className="w-100 btn btn-lg btn-primary mr-1"
+                  onClick={getLikes()}
                   type="submit">Get likes!
                 </button>
               </div>
