@@ -13,15 +13,23 @@ const HomePage = () => {
       "follow": follow
     }
 
+    // fix post fucntion call?
     const getLikes = async () => {
       try {
-        await fetch('/getlikes',
+        const response = await fetch('/getlikes',
         {
           method: 'POST',
-          body: JSON.stringify(data)
+          body: JSON.stringify(
+            {
+              "username": username,
+              "posts": amountOfLikes,
+              "follow": follow
+            }
+          )
         })
+        console.log(response);
       } catch (error) {
-        console.log(error);
+        throw error;
       }
     }
 
