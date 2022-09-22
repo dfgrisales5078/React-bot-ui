@@ -7,10 +7,6 @@ const HomePage = () => {
     const [amountOfLikes, setAmountOfLikes] = useState(0)
     const [follow, setFollow] = useState('off')
 
-    console.log(`user input: ${username}}`)
-    console.log(`user input: ${amountOfLikes}}`)
-    console.log(`user input: ${follow}}`)
-
     const data = {
       "username": username,
       "posts": amountOfLikes,
