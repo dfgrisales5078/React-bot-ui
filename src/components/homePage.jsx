@@ -7,12 +7,6 @@ const HomePage = () => {
     const [amountOfLikes, setAmountOfLikes] = useState(0)
     const [follow, setFollow] = useState('off')
 
-    // const data = {
-    //   "username": username,
-    //   "posts": amountOfLikes,
-    //   "follow": follow
-    // }
-
     // fix post fucntion call?
     const getLikes = async (username, amountOfLikes, follow) => {
       try {
