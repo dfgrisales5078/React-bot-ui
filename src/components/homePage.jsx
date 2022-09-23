@@ -7,14 +7,14 @@ const HomePage = () => {
     const [amountOfLikes, setAmountOfLikes] = useState(0)
     const [follow, setFollow] = useState('off')
 
-    const data = {
-      "username": username,
-      "posts": amountOfLikes,
-      "follow": follow
-    }
+    // const data = {
+    //   "username": username,
+    //   "posts": amountOfLikes,
+    //   "follow": follow
+    // }
 
     // fix post fucntion call?
-    const getLikes = async () => {
+    const getLikes = async (username, amountOfLikes, follow) => {
       try {
         const response = await fetch('/getlikes',
         {
@@ -77,7 +77,7 @@ const HomePage = () => {
               <div className="mt-3 col-md-12">
                 <button 
                   className="w-100 btn btn-lg btn-primary mr-1"
-                  onClick={getLikes()}
+                  onClick={getLikes(username, amountOfLikes, follow)}
                   type="submit">Get likes!
                 </button>
               </div>
