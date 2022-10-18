@@ -3,13 +3,14 @@ import { useState } from 'react';
 
 
 const HomePage = () => {
-    const [username, setUsername] = useState(' ')
+    const [username, setUsername] = useState("user")
     const [amountOfLikes, setAmountOfLikes] = useState(0)
     const [follow, setFollow] = useState('off')
-
+    const [isPending, setIsPending] = useState(false)
     // TODO fix post fucntion call
     const getLikes = async (username, amountOfLikes, follow) => {
       try {
+        setIsPending(true)
         const response = await fetch('/getlikes',
         {
           method: 'POST',
@@ -22,6 +23,7 @@ const HomePage = () => {
           )
         })
         console.log(response);
+        setIsPending(false)
       } catch (error) {
         throw error;
       }
@@ -69,11 +71,16 @@ const HomePage = () => {
               </div>
 
               <div className="mt-3 col-md-12">
-                <button 
+                {!isPending && <button 
                   className="w-100 btn btn-lg btn-primary mr-1"
                   onClick={() => getLikes(username, amountOfLikes, follow)}  
                   type="submit">Get likes!
-                </button>
+                </button>}
+                {isPending && <button disabled
+                  className="w-100 btn btn-lg btn-primary mr-1"
+                  onClick={() => getLikes(username, amountOfLikes, follow)}  
+                  type="submit">Getting Likes!
+                </button>}
               </div>
             </form>
         </React.Fragment> 
