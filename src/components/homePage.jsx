@@ -2,30 +2,56 @@ import React from 'react';
 import { useState } from 'react';
 
 
+
 const HomePage = () => {
-    const [username, setUsername] = useState(' ')
+    const [username, setUsername] = useState("user")
     const [amountOfLikes, setAmountOfLikes] = useState(0)
     const [follow, setFollow] = useState('off')
+    const [isPending, setIsPending] = useState(false)
 
     // TODO fix post fucntion call
-    const getLikes = async (username, amountOfLikes, follow) => {
+    const getLikes = async () => {
       try {
-        const response = await fetch('/getlikes',
-        {
+        setIsPending(true)
+        await fetch('http://127.0.0.1:5000/getlikes', {
           method: 'POST',
+          headers: { 'Content-Type': 'application/json' },     
           body: JSON.stringify(
             {
-              "username": username,
-              "posts": amountOfLikes,
-              "follow": follow
-            }
-          )
+              username: username,
+              posts: amountOfLikes,
+              follow: follow
+            })
+        }).then(async (response) => {
+          const data = await response.json();
+          console.log(data);
+          setIsPending(false)
         })
-        console.log(response);
+          
       } catch (error) {
         throw error;
       }
     }
+
+    // const getLikes = () => {
+    //     setIsPending(true)
+    //     fetch('http://127.0.0.1:5000/getlikes', {
+    //       headers: { 'Content-Type': 'application/json' },
+    //       method: 'POST',     
+    //       body: JSON.stringify(
+    //         {
+    //           username,
+    //           amountOfLikes,
+    //           follow
+    //         }
+    //       )
+    //     }).then( (response) => {
+    //       response = response.status
+    //       console.log(response)
+    //       setIsPending(false)
+    //     }
+    //     )
+    //   } 
 
     return (
         <React.Fragment>
@@ -69,11 +95,16 @@ const HomePage = () => {
               </div>
 
               <div className="mt-3 col-md-12">
-                <button 
+                {!isPending && <button 
                   className="w-100 btn btn-lg btn-primary mr-1"
-                  onClick={() => getLikes(username, amountOfLikes, follow)}  
+                  onClick={() => getLikes()}  
                   type="submit">Get likes!
-                </button>
+                </button>}
+                {isPending && <button disabled
+                  className="w-100 btn btn-lg btn-primary mr-1"
+                  onClick={getLikes}  
+                  type="submit">Getting Likes!
+                </button>}
               </div>
             </form>
         </React.Fragment> 
