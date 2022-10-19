@@ -2,88 +2,47 @@ import React from 'react';
 import { useState } from 'react';
 
 
-
 const HomePage = () => {
-    const [username, setUsername] = useState("user")
-    const [amountOfLikes, setAmountOfLikes] = useState(0)
-    const [follow, setFollow] = useState('off')
-    const [isPending, setIsPending] = useState(false)
-
-    // TODO sending null params?
-    const getLikes = async () => {
-      try {
-        setIsPending(true)
-        await fetch('http://127.0.0.1:5000/getlikes', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },     
-          body: JSON.stringify(
-            {
-              username: username,
-              posts: amountOfLikes,
-              follow: follow
-            })
-        }).then(async (response) => {
-          const data = await response.json();
-          console.log(data);
-          setIsPending(false)
-        })
-          
-      } catch (error) {
-        throw error;
-      }
-    }
 
     return (
         <React.Fragment>
             <h1>Enter your Instagram:</h1>
-            <form>
+            <form action='http://127.0.0.1:5000/getlikes' method='post'>
               <div className="form-group">
                 <label htmlFor="usernameInput"><h5>Username:</h5></label>
                 <input 
                   type="text" 
+                  name='username'
                   className="form-control" 
                   id="usernameInput" 
                   placeholder="Ex: username_123" 
-                  onChange={event => {
-                    setUsername(event.target.value)
-                  }}
                   input/>
               </div>
 
               <div className="form-group">
                 <label htmlFor="usernameInput"><h5>How many posts do you want me to like?</h5></label>
                 <input type="text" 
+                name='posts'
                 className="form-control" 
                 id="usernameInput" 
                 placeholder="Ex: 10" 
-                onChange={event => {
-                  setAmountOfLikes(event.target.value)
-                }}
                 input/>
               </div>
 
               <div className="form-check">
                 <input type="checkbox" 
+                name='follow'
                 className="form-check-input" 
                 id="follow-user" 
-                onChange={event => {
-                  setFollow(event.target.value)
-                }}
                 input/>
 
                 <label className="form-check-label" htmlFor="follow-user">follow me too!</label>
               </div>
 
               <div className="mt-3 col-md-12">
-                {!isPending && <button 
+                {<button 
                   className="w-100 btn btn-lg btn-primary mr-1"
-                  onClick={() => getLikes()}  
                   type="submit">Get likes!
-                </button>}
-                {isPending && <button disabled
-                  className="w-100 btn btn-lg btn-primary mr-1"
-                  onClick={getLikes}  
-                  type="submit">Getting Likes!
                 </button>}
               </div>
             </form>
