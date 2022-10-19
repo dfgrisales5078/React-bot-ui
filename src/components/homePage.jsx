@@ -9,7 +9,7 @@ const HomePage = () => {
     const [follow, setFollow] = useState('off')
     const [isPending, setIsPending] = useState(false)
 
-    // TODO fix post fucntion call
+    // TODO sending null params?
     const getLikes = async () => {
       try {
         setIsPending(true)
@@ -32,26 +32,6 @@ const HomePage = () => {
         throw error;
       }
     }
-
-    // const getLikes = () => {
-    //     setIsPending(true)
-    //     fetch('http://127.0.0.1:5000/getlikes', {
-    //       headers: { 'Content-Type': 'application/json' },
-    //       method: 'POST',     
-    //       body: JSON.stringify(
-    //         {
-    //           username,
-    //           amountOfLikes,
-    //           follow
-    //         }
-    //       )
-    //     }).then( (response) => {
-    //       response = response.status
-    //       console.log(response)
-    //       setIsPending(false)
-    //     }
-    //     )
-    //   } 
 
     return (
         <React.Fragment>
