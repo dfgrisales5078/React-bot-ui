@@ -1,5 +1,5 @@
 ## JavaScript/React simple website.
-Plain website that is meant to be used along with the Get Instagram Likes API endpoint (API Repository linked below). 
+Plain website that is meant to be used along with the Get Instagram Likes API endpoint (Repository linked below). 
 
 Currently, API is not deployed and therefore must be ran locally in order for it to interact with the POST request sent by the Website (https://main.d1s1ozkoy4xkk0.amplifyapp.com/), which is currently deployed using AWS Amplify.
 
