@@ -1,5 +1,5 @@
-## JavaScript/React simple website.
-Plain website that is meant to be used along with the Get Instagram Likes API endpoint (Repository linked below). 
+# JavaScript/React simple website.
+## Plain website that is meant to be used along with the Get Instagram Likes API endpoint (Repository linked below). 
 
 Currently, API endpoint and website are not deployed and therefore both must be ran locally.
 
