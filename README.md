@@ -1,7 +1,7 @@
 ## JavaScript/React simple website.
 Plain website that is meant to be used along with the Get Instagram Likes API endpoint (Repository linked below). 
 
-Currently, API is not deployed and therefore must be ran locally in order for it to interact with the POST request sent by the Website (https://main.d1s1ozkoy4xkk0.amplifyapp.com/), which is currently deployed using AWS Amplify.
+Currently, API endpoint and website are not deployed and therefore both must be ran locally.
 
 The payload sent by the POST method form sends the following information to the API endpoint: username (instagram account to interact with), posts (number of posts to like on the account), and follow (determines is account should be followed as well.)
 
